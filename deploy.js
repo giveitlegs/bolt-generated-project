@@ -3,36 +3,44 @@ const { Octokit } = require('octokit')
     const path = require('path')
     const { execSync } = require('child_process')
 
-    // Create a zip file of the project
-    execSync('zip -r dog-directory.zip . -x node_modules\\*')
-
     async function deployToGitHub() {
       const octokit = new Octokit({
         auth: process.env.GITHUB_TOKEN
       })
 
-      // Create repository
-      await octokit.rest.repos.createForAuthenticatedUser({
-        name: 'dog-directory',
-        description: 'Dog Breed Directory Website',
-        private: false
-      })
+      // Create repository if it doesn't exist
+      try {
+        await octokit.rest.repos.createForAuthenticatedUser({
+          name: 'dog-directory',
+          description: 'Dog Breed Directory Website',
+          private: false
+        })
+      } catch (error) {
+        if (error.status !== 422) throw error
+      }
 
-      // Get the repository
-      const repo = await octokit.rest.repos.get({
-        owner: process.env.GITHUB_USERNAME,
-        repo: 'dog-directory'
-      })
+      // Build the project
+      execSync('npm run build')
 
-      // Upload files
-      const fileContent = fs.readFileSync('dog-directory.zip', { encoding: 'base64' })
-      
-      await octokit.rest.repos.createOrUpdateFileContents({
+      // Initialize Git repository
+      execSync('git init')
+      execSync('git add .')
+      execSync('git commit -m "Initial commit"')
+
+      // Push to GitHub
+      execSync(`git remote add origin https://${process.env.GITHUB_TOKEN}@github.com/${process.env.GITHUB_USERNAME}/dog-directory.git`)
+      execSync('git branch -M main')
+      execSync('git push -u origin main --force')
+
+      // Enable GitHub Pages
+      await octokit.rest.repos.update({
         owner: process.env.GITHUB_USERNAME,
         repo: 'dog-directory',
-        path: 'dog-directory.zip',
-        message: 'Initial commit',
-        content: fileContent
+        has_pages: true,
+        source: {
+          branch: 'main',
+          path: '/'
+        }
       })
 
       console.log('Deployment complete!')

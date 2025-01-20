@@ -3,8 +3,8 @@ import { defineConfig } from 'vite'
 
     export default defineConfig({
       plugins: [react()],
-      base: '/dog-directory/', // Add this line
-      build: {
-        outDir: 'dist'
+      server: {
+        port: process.env.PORT || 5173,
+        strictPort: false
       }
     })
