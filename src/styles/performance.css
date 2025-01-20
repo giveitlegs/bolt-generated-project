@@ -1,0 +1,22 @@
+.lazy-load {
+      min-height: 200px;
+      background: #f8f9fa;
+    }
+
+    .amp-image {
+      background: #f8f9fa;
+      background-image: linear-gradient(
+        90deg,
+        #f8f9fa 0%,
+        #e9ecef 50%,
+        #f8f9fa 100%
+      );
+      background-size: 200% 100%;
+      animation: 1.5s shine linear infinite;
+    }
+
+    @keyframes shine {
+      to {
+        background-position: -200% 0;
+      }
+    }

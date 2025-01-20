@@ -1,0 +1,41 @@
+.search-filters {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      padding: 1rem;
+      background: #f8f9fa;
+      border-radius: 8px;
+      margin-top: 1rem;
+    }
+
+    .filter-group {
+      padding: 0.5rem;
+    }
+
+    .filter-group h4 {
+      margin-bottom: 0.5rem;
+      color: #333;
+    }
+
+    .filter-group label {
+      display: block;
+      margin: 0.25rem 0;
+      padding: 0.25rem;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: background 0.2s ease;
+    }
+
+    .filter-group label:hover {
+      background: rgba(0, 123, 255, 0.1);
+    }
+
+    .filter-group input {
+      margin-right: 0.5rem;
+    }
+
+    @media (max-width: 768px) {
+      .search-filters {
+        grid-template-columns: 1fr;
+      }
+    }

@@ -1,0 +1,9 @@
+{
+      "name": "dog-directory",
+      "scripts": {
+        "deploy": "node deploy.js"
+      },
+      "dependencies": {
+        "octokit": "^2.0.14"
+      }
+    }

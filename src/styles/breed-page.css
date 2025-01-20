@@ -1,0 +1,58 @@
+.breed-intro {
+      margin: 2rem 0;
+      line-height: 1.6;
+    }
+
+    .breed-images {
+      margin: 3rem 0;
+    }
+
+    .image-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .image-grid img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+
+    .care-tips,
+    .breed-history,
+    .breed-faq {
+      margin: 3rem 0;
+    }
+
+    .faq-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 1.5rem;
+    }
+
+    .faq-item {
+      background: #f8f9fa;
+      padding: 1.5rem;
+      border-radius: 8px;
+    }
+
+    .breadcrumbs {
+      margin: 1rem 0;
+      font-size: 0.9rem;
+    }
+
+    .breadcrumbs ol {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .breadcrumbs a {
+      color: #007bff;
+      text-decoration: none;
+    }
